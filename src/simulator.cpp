@@ -655,6 +655,7 @@ Simulator::~Simulator() {
 // AlphaSimR specific functions
 
 vector<AlphaSimRReturn> runFromAlphaSimR(string in) {
+  Node::nextStableId = 0;
   vector<std::string> words;
   Simulator simulator;
   

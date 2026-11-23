@@ -1,5 +1,9 @@
 # README #
 
+This fork includes fixes for zero-SNP founder generation and deterministic
+MaCS node ordering. See [LOCAL_CHANGES.md](LOCAL_CHANGES.md) for the code
+changes, regression commands, validation results and limitations.
+
 [![R-CMD-check](https://github.com/gaynorr/AlphaSimR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/gaynorr/AlphaSimR/actions/workflows/R-CMD-check.yaml)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/AlphaSimR)](https://cran.r-project.org/package=AlphaSimR)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/AlphaSimR)](https://cran.r-project.org/package=AlphaSimR)

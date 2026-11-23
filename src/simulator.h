@@ -239,6 +239,9 @@ public:
   // line will always be included as a candidate for coalescence
   // when traversing event list
   static const double MAX_HEIGHT;
+  // Deterministic ordering within each simulation, independent of heap addresses.
+  static thread_local unsigned long long nextStableId;
+  unsigned long long stableId;
   bool bDeleted;
   
 private:
@@ -747,7 +750,7 @@ private:
 
 struct byNodePtr{
   bool operator()(const NodePtr& node1, const NodePtr& node2) const{
-    return (node1<node2);
+    return (node1->stableId < node2->stableId);
   }
 };
 

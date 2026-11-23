@@ -169,8 +169,11 @@ void Node::replaceOldWithNewEdge(EdgeLocation iLocation,
 }
 
 
+thread_local unsigned long long Node::nextStableId = 0;
+
 Node::Node(NodeType iType,short int iPopulation,double dHeight):
   PtrRefCountable(){
+  this->stableId = nextStableId++;
   this->iType = iType;
   this->iPopulation = iPopulation;
   this->dHeight = dHeight;
