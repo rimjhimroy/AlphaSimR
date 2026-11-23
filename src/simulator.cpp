@@ -714,6 +714,15 @@ Rcpp::List MaCS(Rcpp::String args, arma::uvec maxSites, bool inbred,
     
     arma::uword nSites, nBins, nHap, nInd;
     nSites = macsOutput.size();
+    // Zero segregating sites is a valid result, including at positive mutation rate.
+    // The first command argument gives the requested number of haplotypes.
+    if(nSites==0){
+      nHap = std::stoul(t);
+      nInd = inbred ? nHap : nHap/ploidy;
+      geno(chr).set_size(0,ploidy,nInd);
+      genMap(chr).set_size(0);
+      continue;
+    }
     nHap = macsOutput[0].haplotypes.size();
     if(inbred){
       nInd = nHap;

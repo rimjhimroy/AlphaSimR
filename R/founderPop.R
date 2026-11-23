@@ -255,6 +255,10 @@ runMacs = function(nInd,nChr=1, segSites=NULL, inbred=FALSE, species="GENERIC",
 
   genMap = vector("list",nChr)
   for(i in seq_len(nChr)){
+    if(nLoci[i]==0L){
+      genMap[[i]] = numeric(0)
+      next
+    }
     genMap[[i]] = genLen[i]*c(macsOut$genMap[[i]]-macsOut$genMap[[i]][1])
     names(genMap[[i]]) = paste(i,1:length(genMap[[i]]),sep="_")
   }
@@ -267,7 +271,7 @@ runMacs = function(nInd,nChr=1, segSites=NULL, inbred=FALSE, species="GENERIC",
                nLoci=nLoci,
                geno=macsOut$geno,
                genMap=genMap,
-               centromere=sapply(genMap,max)/2,
+               centromere=sapply(genMap,function(x) if(length(x)) max(x)/2 else 0),
                inbred=inbred)
   return(output)
 }
